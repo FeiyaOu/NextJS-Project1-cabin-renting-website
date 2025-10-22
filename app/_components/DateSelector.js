@@ -16,8 +16,7 @@ function isAlreadyBooked(range, datesArr) {
 
 function DateSelector({ settings, cabin, bookedDates }) {
   const { range, setRange, resetRange } = useReservation();
-  const displayRange=isAlreadyBooked(range,bookedDates)?{}:range;
-  
+  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
 
   // const [range,setRange]=useState({ from: undefined, to: undefined });
   // CHANGE
@@ -27,19 +26,18 @@ function DateSelector({ settings, cabin, bookedDates }) {
 
   // compute nights only when we have both dates to avoid NaN
   const hasDisplayRange = displayRange && displayRange.from && displayRange.to;
-  const numNights = hasDisplayRange ? Math.max(0, differenceInDays(displayRange.to, displayRange.from)) : 0;
+  const numNights = hasDisplayRange
+    ? Math.max(0, differenceInDays(displayRange.to, displayRange.from))
+    : 0;
 
   // if you want to count inclusive nights (same-day => 1), use: numNights = hasRange ? Math.max(0, differenceInDays(range.to, range.from) || 0) + 1 : 0
 
   const cabinPrice = numNights * (regularPrice - discount || 0);
 
-  
   // SETTINGS
   // const minBookingLength = 1;
   // const maxBookingLength = 23;
-  const {minBookingLength,maxBookingLength}=settings;
-
-
+  const { minBookingLength, maxBookingLength } = settings;
 
   return (
     <div className="flex flex-col justify-between">
@@ -55,7 +53,9 @@ function DateSelector({ settings, cabin, bookedDates }) {
         toYear={new Date().getFullYear() + 5}
         captionLayout="dropdown"
         numberOfMonths={2}
-         disabled={(curDate)=>isPast(curDate)||bookedDates.some((date)=>isSameDay(date,curDate))}
+        disabled={(curDate) =>
+          isPast(curDate) || bookedDates.some((date) => isSameDay(date, curDate))
+        }
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">

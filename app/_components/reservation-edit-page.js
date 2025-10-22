@@ -23,16 +23,14 @@ export default function Page() {
             </option>
             {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
               <option value={x} key={x}>
-                {x} {x === 1 ? "guest" : "guests"}
+                {x} {x === 1 ? 'guest' : 'guests'}
               </option>
             ))}
           </select>
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
-            Anything we should know about your stay?
-          </label>
+          <label htmlFor="observations">Anything we should know about your stay?</label>
           <textarea
             name="observations"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"

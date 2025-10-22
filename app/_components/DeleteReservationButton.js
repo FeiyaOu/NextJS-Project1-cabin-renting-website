@@ -1,33 +1,33 @@
-"use client"
+'use client';
 
-import { useOptimistic, useTransition } from 'react'
-import { TrashIcon } from '@heroicons/react/24/solid'
-import SpinnerMini from './SpinnerMini'
-import { deleteBooking } from '../_lib/actions'
+import { useOptimistic, useTransition } from 'react';
+import { TrashIcon } from '@heroicons/react/24/solid';
+import SpinnerMini from './SpinnerMini';
+import { deleteBooking } from '../_lib/actions';
 
 export default function DeleteReservationButton({ bookingId }) {
-  const [isDeleted, addOptimistic] = useOptimistic(false, (_, next) => next)
-  const [isPending, startTransition] = useTransition()
+  const [isDeleted, addOptimistic] = useOptimistic(false, (_, next) => next);
+  const [isPending, startTransition] = useTransition();
 
   async function handleDelete(e) {
-    if (!confirm('Are you sure to delete the booking?')) return
+    if (!confirm('Are you sure to delete the booking?')) return;
 
     // Optimistically mark deleted and hide the closest reservation card element
-    addOptimistic(true)
-    const el = e.currentTarget.closest('[data-reservation-card]')
-    const prevDisplay = el?.style?.display
-    if (el) el.style.display = 'none'
+    addOptimistic(true);
+    const el = e.currentTarget.closest('[data-reservation-card]');
+    const prevDisplay = el?.style?.display;
+    if (el) el.style.display = 'none';
 
     startTransition(async () => {
       try {
-        await deleteBooking(bookingId)
+        await deleteBooking(bookingId);
       } catch (err) {
-        console.error('delete failed', err)
+        console.error('delete failed', err);
         // revert optimistic change
-        addOptimistic(false)
-        if (el) el.style.display = prevDisplay || ''
+        addOptimistic(false);
+        if (el) el.style.display = prevDisplay || '';
       }
-    })
+    });
   }
 
   // When isDeleted is true we already hid the element; render a no-op button to keep UI stable
@@ -48,5 +48,5 @@ export default function DeleteReservationButton({ bookingId }) {
         </span>
       )}
     </button>
-  )
+  );
 }
