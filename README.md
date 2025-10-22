@@ -1,4 +1,4 @@
-This is a practice following the Udemy course of React,tutored by .This project builds up a website of cabin renting.It is a full stack development, using NextJS for front-end and back-end, and Supabase for database.For the styling, we use tailwindCSS.
+This is a practice following the Udemy course of React,tutored by Jonas Schmedtmann.This project builds up a website of cabin renting.It is a full stack development, using NextJS for front-end and back-end, and Supabase for database.For the styling, we use tailwindCSS.
 
 /////////
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
